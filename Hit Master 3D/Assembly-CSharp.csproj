@@ -42,13 +42,23 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Pool\PoolObject.cs" />
+     <Compile Include="Assets\Animation\Clips\IDamageable.cs" />
+     <Compile Include="Assets\RagDollControls.cs" />
+     <Compile Include="Assets\Animation\Clips\MyAmmo.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Animation\Clips\Stage.cs" />
+     <Compile Include="Assets\Animation\Clips\Health.cs" />
      <Compile Include="Assets\Scripts\Pool\Pool.cs" />
-     <Compile Include="Assets\Scripts\WaitForRunState.cs" />
+     <Compile Include="Assets\Animation\Clips\IAmmo.cs" />
+     <Compile Include="Assets\Animation\Clips\IDamaging.cs" />
+     <Compile Include="Assets\Scripts\RunState.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\AttackState.cs" />
      <Compile Include="Assets\Scripts\State.cs" />
+     <Compile Include="Assets\Scripts\EnemiesCount.cs" />
+     <Compile Include="Assets\Scripts\Gun.cs" />
      <Compile Include="Assets\Scripts\Finish.cs" />
+     <Compile Include="Assets\Animation\Clips\Damage.cs" />
      <None Include="Assets\ExternalAssets\Customizable Skybox\Stylized Sky\Shaders\Stylized Sky.shader" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -264,10 +274,10 @@
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.6f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/PackageCache/com.unity.visualscripting@1.6.1/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/PackageCache/com.unity.visualscripting@1.6.1/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="clipper_library">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/PackageCache/com.unity.cinemachine@2.7.9/Runtime/ThirdParty/clipper_library.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/PackageCache/com.unity.cinemachine@2.7.9/Runtime/ThirdParty/clipper_library.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.iOS.Extensions.Xcode">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.6f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -621,58 +631,58 @@
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.6f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.Flow.Editor">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Cinemachine">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VSCode.Editor">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
      </Reference>
      <Reference Include="com.unity.cinemachine.editor">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro.Editor">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualStudio.Editor">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline.Editor">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.Core.Editor">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.State.Editor">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.dll</HintPath>
      </Reference>
      <Reference Include="VSSettingsProvider">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/VSSettingsProvider.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/VSSettingsProvider.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.Flow">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Rider.Editor">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.UI">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.State">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.State.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.State.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.Core">
-     <HintPath>C:/Job Projects/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.Core.dll</HintPath>
+     <HintPath>C:/Job Projects/Test-Task/Hit Master 3D/Library/ScriptAssemblies/Unity.VisualScripting.Core.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -1,22 +1,21 @@
-
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
-[RequireComponent(typeof(Pool))]
+[RequireComponent(typeof(PoolObject))]
 public class Bullet : MonoBehaviour
 {
     private PoolObject _poolObject;
 
     [SerializeField] private float _timeToLife;
     
+    public static Action EnemyHit;
+    
 
     private void Start()
     {
         _poolObject = GetComponent<PoolObject>();
     }
-    
 
     private void OnEnable()
     {
@@ -27,8 +26,9 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.tag == ("Enemy"))
         {
-            Destroy(other.gameObject); // тут лучше реализовать пул врагов, но у нас их достаточно мало, поэтому я не стал тратить на это время
             _poolObject.ReturnToPool();
+            
+            EnemyHit.Invoke();
         }
         else
         {
