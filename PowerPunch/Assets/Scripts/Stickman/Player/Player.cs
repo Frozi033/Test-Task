@@ -1,7 +1,4 @@
-using System;
-using System.Numerics;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
@@ -39,7 +36,7 @@ public class Player: StickmanCore
         var dirToTarget = tarPos - palyerPos;
         dirToTarget.y = 0;
         var lookAtTargetRot = Quaternion.LookRotation(dirToTarget);
-        var moveVector = lookAtTargetRot * new Vector3(_joystick.Horizontal, 0, _joystick.Vertical);  // делаем необходимы расчеты для привязки перемещения игрока вокруг цели
+        var moveVector = lookAtTargetRot * new Vector3(_joystick.Horizontal, 0, _joystick.Vertical);
 
         MovePlayer(moveVector, _joystick.Vertical, _joystick.Horizontal);
         _magneting?.Invoke(dirToTarget); 
@@ -54,7 +51,7 @@ public class Player: StickmanCore
         if (LifeStatus != Status.Dead)
         {
             RagdollOn();
-            RagDollGetUp();  // включаем рэг долл и запускаем метод поднятия из рег долла
+            RagDollGetUp();
         }
     }
 
@@ -63,8 +60,8 @@ public class Player: StickmanCore
         if (LifeStatus != Status.Dead)
         {
             Fighting();
-            _hurtCol.SetActive(true); // включаем партиклы и триггер для урона от врага
-            _myAnimator.SetLayerWeight(1, 1); // включаем анимацию ударов
+            _hurtCol.SetActive(true);
+            _myAnimator.SetLayerWeight(1, 1);
         }
     }
     private void FightOvering()
@@ -72,8 +69,8 @@ public class Player: StickmanCore
         if (LifeStatus != Status.Dead)
         {
             FightOver();
-            _hurtCol.SetActive(false); // выключаем партиклы и триггер для урона от врага
-            _myAnimator.SetLayerWeight(1, 0); // выключаем анимацию ударов
+            _hurtCol.SetActive(false);
+            _myAnimator.SetLayerWeight(1, 0);
         }
     }
 

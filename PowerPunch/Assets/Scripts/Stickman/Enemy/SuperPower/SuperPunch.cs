@@ -21,7 +21,7 @@ public class SuperPunch : SuperPower
         
         base.Init(player, playerRoot,levelRatio);
         
-        UiDangerZone?.Invoke(true, _angle);  // включаем и оптравляем радиусу действия удара угол
+        UiDangerZone?.Invoke(true, _angle);
     }
 
     public override void DO() {    }
@@ -30,7 +30,7 @@ public class SuperPunch : SuperPower
     {
         base.GameOver(tag);
         
-        UiDangerZone?.Invoke(false, _angle);  // тут не до конца наладил систему смерти и завершения игры, так как понял, что это не требуется?
+        UiDangerZone?.Invoke(false, _angle);
     }
     
     bool GetRaycast(Vector3 dir)
@@ -43,7 +43,7 @@ public class SuperPunch : SuperPower
         {
             result = true;
             
-            Debug.DrawLine(pos, hit.point, Color.green);   // тут мы рисуем лучи для просчитывания зоны действия суперсилы
+            Debug.DrawLine(pos, hit.point, Color.green);
         }
         else
         { 
@@ -69,7 +69,7 @@ public class SuperPunch : SuperPower
             Vector3 dir = EnemyBoxer.transform.TransformDirection(new Vector3(x, 0, y));
             if (GetRaycast(dir))
             {
-                a = true;                  // проверяем есть ли игрок на одном из лучей
+                a = true;
             }
 
             if(x != 0) 
@@ -94,15 +94,15 @@ public class SuperPunch : SuperPower
     {
         if (RayToScan())
         {
-            SetForceToPlayer(_rigidBody, _interractForce, EnemyBoxer.transform.position, _radius);  // включаем рэг долл и придаем силу игроку
+            SetForceToPlayer(_rigidBody, _interractForce, EnemyBoxer.transform.position, _radius);
 
-            _playerHealth.TakeDamage(_damage);  // наносим урон игроку
+            _playerHealth.TakeDamage(_damage);
         }
         
-        base.Hitting(); // там мы включаем партиклы, которые остались
+        base.Hitting();
 
-        OverSuperPower();  // завершаем действие суперсилы
-        
-        UiDangerZone?.Invoke(false, _angle); // выключаем радиус действия удара
+        OverSuperPower();
+
+        UiDangerZone?.Invoke(false, _angle);
     }
 }

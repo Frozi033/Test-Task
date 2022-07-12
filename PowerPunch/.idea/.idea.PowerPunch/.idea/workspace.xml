@@ -16,7 +16,6 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../AnotherRagDollTest/Assets/BzKovSoft/RagdollTemplate/Scripts/Charachter/BzRagdoll.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.mobile.android-logcat@1.2.1/Editor/AndroidTools/AndroidTools.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://D:/Projects/WaiterRace/Assets/_Scripts/Player.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.animation.rigging@1.0.3/Editor/Effectors/RigEffectorWizard.cs" root0="SKIP_HIGHLIGHTING" />

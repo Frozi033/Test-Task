@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using BattleVariables;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -23,32 +21,32 @@ public class SuperJump : SuperPower
         
         base.Init(player, playerRoot,levelRatio);
         
-        UiDangerZone?.Invoke(true, _angle); // включаем и оптравляем радиусу действия удара угол
+        UiDangerZone?.Invoke(true, _angle);
     }
 
     public override void DO() {    }
 
-    protected override void GameOver(string tag)    // тут не до конца наладил систему смерти и завершения игры, так как понял, что это не требуется?
+    protected override void GameOver(string tag)
     {
         base.GameOver(tag);
         
-        UiDangerZone?.Invoke(false, _angle); // выключаем радиус действия удара
+        UiDangerZone?.Invoke(false, _angle);
     }
 
 
     public override void Hitting()
     {
-        if ((_player.transform.position - EnemyBoxer.transform.position).magnitude <= _radius)  // смотрим есть ли игрок в радиусе
+        if ((_player.transform.position - EnemyBoxer.transform.position).magnitude <= _radius)
         {
-            SetForceToPlayer(_rigidBody, _interractForce, EnemyBoxer.transform.position, _radius); // включаем рэг долл и придаем силу игроку
-            
-            _playerHealth.TakeDamage(_damage); // наносим урон игроку
+            SetForceToPlayer(_rigidBody, _interractForce, EnemyBoxer.transform.position, _radius);
+
+            _playerHealth.TakeDamage(_damage);
         }
 
-        base.Hitting();  // там мы отключаем партиклы, которые остались
-        
-        OverSuperPower(); // завершаем действие суперсилы
-        
-        UiDangerZone?.Invoke(false, _angle); // выключаем радиус действия удара
+        base.Hitting();
+
+        OverSuperPower();
+
+        UiDangerZone?.Invoke(false, _angle);
     }
 }

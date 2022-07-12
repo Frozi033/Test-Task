@@ -25,9 +25,9 @@ public class SuperMagnetPunch : SuperPower
         
         base.Init(player, playerRoot,levelRatio);
         
-        ActivateMagnetingParticles?.Invoke(_player);  // активируем партиклы исходящие от игрока
-        
-        ActivateMagnetingForce.Invoke(true); // активируем притягивание к врагу
+        ActivateMagnetingParticles?.Invoke(_player);
+
+        ActivateMagnetingForce.Invoke(true);
     }
 
     public override void DO()
@@ -36,7 +36,7 @@ public class SuperMagnetPunch : SuperPower
 
         _activeTime -= Time.deltaTime; 
 
-        if (_activeTime <= 0) // если время закончилось, то завершаем все
+        if (_activeTime <= 0)
         {
             ActivateMagnetingForce.Invoke(false);
             
@@ -45,11 +45,11 @@ public class SuperMagnetPunch : SuperPower
             
             OverSuperPower();
         }
-        else if ((_player.transform.position - EnemyBoxer.transform.position).magnitude <= _minDistance) // если игрок достаточно близко, то начинаем анимацию атаки
+        else if ((_player.transform.position - EnemyBoxer.transform.position).magnitude <= _minDistance)
         {
             ActivateMagnetingForce.Invoke(false);
             
-            ActivateMagnetingParticles?.Invoke(null); // отключаем партиклы и силу притягивния
+            ActivateMagnetingParticles?.Invoke(null);
             Destroy(_currentParticles);
 
             _myAnimator.Play(_addictionalAnimation.name, 0);
@@ -58,10 +58,10 @@ public class SuperMagnetPunch : SuperPower
     
     public override void Hitting()
     {
-        SetForceToPlayer(_rigidBody, _interractForce, EnemyBoxer.transform.position, _radius); // включаем рэг долл и придаем ему силу
+        SetForceToPlayer(_rigidBody, _interractForce, EnemyBoxer.transform.position, _radius);
 
-        _playerHealth.TakeDamage(_damage); // игрок получает урон
+        _playerHealth.TakeDamage(_damage);
 
-        OverSuperPower(); // завершаем супер силу
+        OverSuperPower();
     }
 }

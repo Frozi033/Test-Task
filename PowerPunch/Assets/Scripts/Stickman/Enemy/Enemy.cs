@@ -13,14 +13,13 @@ public class Enemy : StickmanCore
     [SerializeField] private float _timeDelaySuperPower;
     [SerializeField] private float _timeRelaxState;
 
-    [SerializeField] private State _fightState;  // тут я использую паттерн состояние
+    [SerializeField] private State _fightState;
     [SerializeField] private State _superPowerState;
     [SerializeField] private State _relaxState;
     [SerializeField] private State _startState;
     [SerializeField] private State _waitFightState;
     
-    [SerializeField] private List<SuperPower> _superPowerAttacks = new List<SuperPower>();  // тут я использую scriptable object, чтобы задавать поведения при различных суперсилах
-
+    [SerializeField] private List<SuperPower> _superPowerAttacks = new List<SuperPower>();
     
     private float _ratioLevel = 1;
     
@@ -28,6 +27,9 @@ public class Enemy : StickmanCore
     
     private Vector3 _defaultPos;
 
+    private static readonly int SuperPowerAnim = Animator.StringToHash("SuperPower");
+    private static readonly int RelaxStateAnim = Animator.StringToHash("RelaxState");
+    private static readonly int FightAnim = Animator.StringToHash("Fight");
     
     public SuperPower CurrentSuperPower;
 
@@ -35,7 +37,7 @@ public class Enemy : StickmanCore
 
     public static Action FightStart;
     public static Action FightEnd;
-    
+
     private void OnDisable()
     {
         StopAllCoroutines();
@@ -46,8 +48,8 @@ public class Enemy : StickmanCore
     private void Start()
     {
         SetState(_startState);
-        
-        StartCoroutine(SelectingSuperAttacks()); // начинаем задержку в применении суперсил
+
+        StartCoroutine(SelectingSuperAttacks());
         
         _defaultPos = gameObject.transform.localPosition;
     }
@@ -60,17 +62,17 @@ public class Enemy : StickmanCore
     
     public void LookAtTarget()
     {
-        Look(_target);  // смотрим на цель
+        Look(_target); 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !_relaxing && CurrentSuperPower == null)   // начинаем драться с игроком
+        if (other.CompareTag("Player") && !_relaxing && CurrentSuperPower == null)  
         {
             SetState(_fightState);
             FightStart.Invoke();
         }
-        else if (other.CompareTag("Player") && (_relaxing || CurrentSuperPower != null))  // только игрок может бить врага, так как у врага есть другие дела
+        else if (other.CompareTag("Player") && (_relaxing || CurrentSuperPower != null)) 
         {
             FightStart.Invoke();
         }
@@ -78,12 +80,12 @@ public class Enemy : StickmanCore
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && !_relaxing && CurrentSuperPower == null)  // перестаем драться с игроком
+        if (other.CompareTag("Player") && !_relaxing && CurrentSuperPower == null) 
         {
             SetState(_waitFightState);
             FightEnd.Invoke();
         }
-        else if (other.CompareTag("Player") && (_relaxing || CurrentSuperPower != null)) // игрок перестает нас бить
+        else if (other.CompareTag("Player") && (_relaxing || CurrentSuperPower != null))
         {
             FightEnd.Invoke();
         }
@@ -92,19 +94,19 @@ public class Enemy : StickmanCore
     
     public void SetState(State state)
     {
-        CurrentState = Instantiate(state);  // включаем нужное состояние
+        CurrentState = Instantiate(state); 
         CurrentState.EnemyBoxer = this;
-        CurrentState.Init(); // инициализируем его
+        CurrentState.Init();
     }
     private void SetSuperPower(SuperPower superPower)
     {
-        CurrentSuperPower = Instantiate(superPower);   // включаем суперсилу
+        CurrentSuperPower = Instantiate(superPower);  
         CurrentSuperPower.EnemyBoxer = this;
         
         FightOvering();
-        SetState(_superPowerState); // меняем состояние
+        SetState(_superPowerState);
         
-        _myAnimator.SetBool("SuperPower", true);
+        _myAnimator.SetBool(SuperPowerAnim, true);
         
         CurrentSuperPower.Init(_target.gameObject, _playerRoot,_ratioLevel);
     }
@@ -112,12 +114,12 @@ public class Enemy : StickmanCore
     private void Damaging()
     {
         CurrentSuperPower.Hitting();
-        FightEnd.Invoke();   // этот метод запускается с помощью эвента в анимации
+        FightEnd.Invoke(); 
     }
     
     private void SetAnimSpeed(float speed)
     {
-        CurrentSuperPower?.Charging(speed);   // этот метод включает и отключает задержку анимации
+        CurrentSuperPower?.Charging(speed); 
     }
 
     public void FinishSuperAttack()
@@ -126,8 +128,8 @@ public class Enemy : StickmanCore
 
         _relaxing = true;
         
-        _myAnimator.SetBool("SuperPower", false);
-        _myAnimator.SetBool("RelaxState", true);  // тут мы запускаем состояние и таймер отдыха
+        _myAnimator.SetBool(SuperPowerAnim, false);
+        _myAnimator.SetBool(RelaxStateAnim, true); 
         
         StartCoroutine(RelaxingState());
     }
@@ -136,13 +138,13 @@ public class Enemy : StickmanCore
     {
         Fighting();
         
-        _myAnimator.SetBool("Fight", true);  // включаем состояние драки
+        _myAnimator.SetBool(FightAnim, true);
         
     }
     
     public void FightOvering()
     {
-        _myAnimator.SetBool("Fight", false);   // выключаем состояние драки
+        _myAnimator.SetBool(FightAnim, false);
         
         FightOver();
     }
@@ -154,7 +156,7 @@ public class Enemy : StickmanCore
         
         if (CurrentSuperPower == null)
         {
-            int id = Random.Range(0, _superPowerAttacks.Count);  // тут просто рандомно берем суперсилу и включаем ее
+            int id = Random.Range(0, _superPowerAttacks.Count);
             Debug.Log(id);
             SetSuperPower(_superPowerAttacks[id]);
         }
@@ -166,19 +168,19 @@ public class Enemy : StickmanCore
 
         _relaxing = false;
 
-        _myAnimator.SetBool("RelaxState", false);
+        _myAnimator.SetBool(RelaxStateAnim, false);
 
         if ((_target.position - gameObject.transform.position).magnitude <= 1.5f)
         {
             SetState(_fightState);
         }
-        else    // проверяем на каком расстоянии игрок, чтобы сразу же перейти в состояние боя
+        else    
         {
             SetState(_waitFightState);
         }
         
-        StartCoroutine(SelectingSuperAttacks()); // начинаем задержку в применении суперсил 
+        StartCoroutine(SelectingSuperAttacks());
         
-        gameObject.transform.localPosition = _defaultPos; // тут возвращаем игрока в начальную позицию, тк из-за анимации он иногда "съезжал"
+        gameObject.transform.localPosition = _defaultPos;
     }
 }

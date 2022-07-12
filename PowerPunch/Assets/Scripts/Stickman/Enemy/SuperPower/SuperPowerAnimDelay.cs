@@ -18,7 +18,7 @@ public class SuperPowerAnimDelay : MonoBehaviour
     public void SetAnimDelay()
     {
         _animator.speed = 0;
-        StartCoroutine(ChargingDeley()); // по эвенту из аниматора меняем скорость анимации и запускаем таймер
+        StartCoroutine(ChargingDeley());
     }
 
     private IEnumerator ChargingDeley()

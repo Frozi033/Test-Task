@@ -10,12 +10,12 @@ public class SuperAttackState : State
     
     public override void Do()
     {
-        EnemyBoxer.CurrentSuperPower.DO(); // передаем update в саму супер силу
+        EnemyBoxer.CurrentSuperPower.DO();
     }
 
     private void Finish()
     {
-        EnemyBoxer.FinishSuperAttack(); // завершаем супер атаку
+        EnemyBoxer.FinishSuperAttack();
         SuperPower.SuperAttackOver -= Finish;
     }
 }

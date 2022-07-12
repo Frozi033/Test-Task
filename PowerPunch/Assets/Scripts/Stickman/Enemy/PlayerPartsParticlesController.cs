@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPartsParticlesController : MonoBehaviour
@@ -32,7 +29,7 @@ public class PlayerPartsParticlesController : MonoBehaviour
         if (player != null)
         {
             _target = player;
-            ParticlesAct = ChasingPlayer; // при инициализации суперсилы с притягиванием, мы получаекм сюда позицию игрока
+            ParticlesAct = ChasingPlayer;
         }
         else
         {
@@ -49,7 +46,7 @@ public class PlayerPartsParticlesController : MonoBehaviour
     {
         _partSystemShape = _partSystem.shape;
         
-        _distance = (target.position - transform.position).magnitude; //  вычисляем дистанцую до игрока и передаем ее партиклам
+        _distance = (target.position - transform.position).magnitude;
         _partSystemShape.length = _distance;
     }
 }

@@ -61,7 +61,7 @@ public class StickmanCore : MonoBehaviour
     {
         if (!_myController.isGrounded)
         {
-            _playerVelocityY.y += _gravityValue * Time.deltaTime;  // гравитация для контроллера персонажа
+            _playerVelocityY.y += _gravityValue * Time.deltaTime;
         }
         else
         {
@@ -71,7 +71,7 @@ public class StickmanCore : MonoBehaviour
     protected void Look(Transform target)
     {
         var direction = (target.position - gameObject.transform.position).normalized; 
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));  // смотрим в направлении цели без учета Y координат
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         gameObject.transform.rotation = lookRotation;
     }
     
@@ -99,7 +99,7 @@ public class StickmanCore : MonoBehaviour
     
     protected void RagdollOn()
     {
-        _ragDollController.RagdollIn(); // включаем рэг долл через контроллер
+        _ragDollController.RagdollIn();
     }
 
     protected void RagDollGetUp()
@@ -112,14 +112,14 @@ public class StickmanCore : MonoBehaviour
         
         if (LifeStatus != Status.Dead)
         {
-            _ragDollController.GetUp(); // ждем определенное время преде тем как игрок встанет из рэг долла
+            _ragDollController.GetUp();
         }
     }
     
     protected void MoveAnimationDirection(float speedV, float speedH)
     {
         _myAnimator.SetFloat("SpeedV", speedV);
-        _myAnimator.SetFloat("SpeedH", speedH);  // записываем скорость перемещения персонажа в аниматор
+        _myAnimator.SetFloat("SpeedH", speedH);
     }
     
     public enum Status
